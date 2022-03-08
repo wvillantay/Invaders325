@@ -8,6 +8,6 @@ public class EnemyBullet : MonoBehaviour
     private void Update()
     {
         // moving the bullet up 0.01 units every frame
-        transform.Translate(0, -0.005f, 0);
+        transform.Translate(0, -0.002f, 0);
     }
 }

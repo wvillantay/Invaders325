@@ -21,6 +21,7 @@ public class Player : MonoBehaviour
     public GameObject life_1;
     public GameObject life_2;
     public GameObject life_3;
+    //public GameObject life_4;
     public TMP_Text life_count;
 
     // when the script starts up

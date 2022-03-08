@@ -35,8 +35,8 @@ public class Score : MonoBehaviour
         high_score.text = string.Format("{0000}", score);
     }
 
-    public void SendScore() // function to send the score over to the endmanager script
+    public void SendScore() // function to send the score 
     {
-        EndManager.Instance.ReceiveScore(score); // sending the score to the endmanager script
+        EndManager.Instance.ReceiveScore(score); // sending the score 
     }
 }

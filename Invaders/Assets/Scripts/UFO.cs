@@ -21,7 +21,7 @@ public class UFO : MonoBehaviour
         if (shouldmove)
         {
             // translate it's x position by 0.012f units every frame
-            transform.Translate(0.012f, 0, 0);
+            transform.Translate(0.005f, 0, 0);
         }
     }
 

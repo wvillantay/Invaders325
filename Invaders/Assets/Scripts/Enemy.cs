@@ -146,7 +146,7 @@ public class Enemy : MonoBehaviour
         // adding cooldown
         cooldown = true;
         // waiting 1/4 of a second
-        yield return new WaitForSeconds(0.75f);
+        yield return new WaitForSeconds(0.5f);
         // removing the cooldown
         cooldown = false;
     }
@@ -189,7 +189,7 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             // wait 1 second
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(1);//1
 
             // if switch is false
             if (!_switch)
@@ -215,7 +215,7 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            // if switch is true
+            
             if (_switch)
             {
                 // if the x sorting order is equal to 5

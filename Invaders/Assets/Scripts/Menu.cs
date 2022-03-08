@@ -15,10 +15,10 @@ public class Menu : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this; // setting instance equal to this class inside of this script
+        Instance = this; 
     }
 
-    private void Start() // when the script starts
+    private void Start() 
     {
         Sync(); // if there is a saved gamemode sync the gamemode text to the saved gamemode
         LoadSave(); // load the save file
