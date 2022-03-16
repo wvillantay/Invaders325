@@ -21,15 +21,15 @@ public class EndManager : MonoBehaviour
     public GameObject Enemies_3; // declaring a public gameobject to get a reference to the third round of enemies so that we can instantiate it later on
 
 
-    private void Awake() 
+    private void Awake() // called before the script is started
     {
-        Instance = this; 
+        Instance = this; // setting instance equal to this script
     }
 
-    private void Start() 
+    private void Start() // this function is called when the script is started
     {
         StartCoroutine(Ready()); // starting the ready coroutine
-        level = 1; 
+        level = 1; // setting the level equal to 1 (default)
     }
 
     public void Add() // each instance of the enemy script will call this function therefore giving us the amount of enemies in the level
@@ -39,7 +39,7 @@ public class EndManager : MonoBehaviour
 
     public void Remove() // when an enemy dies they will call this function
     {
-        enemycount--; 
+        enemycount--; // decrementing the count of enemies in the level
     }
 
     private void Update() // called every frame
@@ -53,12 +53,12 @@ public class EndManager : MonoBehaviour
                 EndScreen.SetActive(true); // setting the endscreen to active
                 Status.text = win; // setting the status text to the win state
             }
-            else if (gamemode == "endless") 
+            else if (gamemode == "endless") // if the gamemode is endless
             {
                 ready = false; // set ready equal to false
-                StartCoroutine(Ready()); // start the ready
+                StartCoroutine(Ready()); // start the ready coroutine
 
-                int random; 
+                int random; // declare a local int called random
 
                 random = Random.Range(1, 4); // set random to a random int between 1 and 3 (last number is excluded)
                 switch(random) // choose a different outcome depending on the value of random
@@ -87,17 +87,17 @@ public class EndManager : MonoBehaviour
     public void Lose() // function which will be called when the player dies
     {
         Score.Instance.SendScore(); // sending score
-        EndScreen.SetActive(true); 
-        Status.text = lose; 
+        EndScreen.SetActive(true); // setting the endscreen to active
+        Status.text = lose; // setting the status text to the lose state
         ready = false; // setting ready to false so that we don't check for the amount of enemies anymore
     }
 
-    public void Quit() // call this back button in the endscreen
+    public void Quit() // call this function when the user clicks the back button in the endscreen
     {
-        SceneManager.LoadScene("Menu"); 
+        SceneManager.LoadScene("Credits"); // loading the credits scene
     }
 
-    public void Continue() 
+    public void Continue() // call this function when we click the continue button in the endscreen
     {
         if (gamemode == "endless") // if the player is playing the endless gamemode
         {
@@ -119,7 +119,7 @@ public class EndManager : MonoBehaviour
             }
             else if (level == 2) // if level is equal to 2 
             {
-                Destroy(GameObject.Find("Enemies_2")); 
+                Destroy(GameObject.Find("Enemies_2")); // destroying the old enemies
 
                 Debug.Log("<color=yellow>Level 2 Detected</color>");
                 CloseEndScreen(); // get the game ready
@@ -134,7 +134,7 @@ public class EndManager : MonoBehaviour
                 Quit(); // go back to the main menu since we have completed the final level
             }
         }
-    }
+    } 
 
     public void ReceiveGamemode(string _gamemode) // function to receive the saved gamemode and then update it here
     {

@@ -30,6 +30,12 @@ public class Enemy : MonoBehaviour
     private bool _switch;
     // declaring a private float to hold the speed's value
     private float speed = 0.25f;
+    // declaring a public gameobject to get a reference to the enemies main sprite
+    public GameObject main_sprite;
+    // declaring a public gameobject to get a reference to the enemies animated sprite
+    public GameObject animated_sprite;
+    // declaring a private int to determine whether it's the first sprite swap or not
+    private int sprite_index; 
 
     // before the script starts
     private void Awake()
@@ -46,6 +52,8 @@ public class Enemy : MonoBehaviour
 
         // starting the move enemy coroutine
         StartCoroutine(MoveEnemy());
+        // starting the swap sprite coroutine
+        StartCoroutine(SwapSprite());
 
         EndManager.Instance.Add(); // adding 1 to the count of enemies in the level 
     }
@@ -146,7 +154,7 @@ public class Enemy : MonoBehaviour
         // adding cooldown
         cooldown = true;
         // waiting 1/4 of a second
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.75f);
         // removing the cooldown
         cooldown = false;
     }
@@ -189,7 +197,7 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             // wait 1 second
-            yield return new WaitForSeconds(1);//1
+            yield return new WaitForSeconds(1);
 
             // if switch is false
             if (!_switch)
@@ -215,7 +223,7 @@ public class Enemy : MonoBehaviour
                 }
             }
 
-            
+            // if switch is true
             if (_switch)
             {
                 // if the x sorting order is equal to 5
@@ -241,8 +249,28 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public void IncreaseSpeed()
+    public void IncreaseSpeed() // function to increase the speed of the enemy
     {
-        speed += speed;
+        speed += speed; // increase the speed by speed
+    }
+    
+    private IEnumerator SwapSprite() // coroutine to swap the sprite every second
+    {
+        while (true) // infinite loop
+        {
+            yield return new WaitForSeconds(1f); // wait 1 second
+            if (sprite_index == 0) // if the enemy is using the main sprite
+            {
+                main_sprite.SetActive(false); // disable the main sprite
+                animated_sprite.SetActive(true); // enable the animated sprite
+                sprite_index++; // increment sprite_index
+            }
+            else if (sprite_index == 1) // if the enemy is using the animated sprite
+            {
+                animated_sprite.SetActive(false); // disable the animated sprite
+                main_sprite.SetActive(true); // enable the main sprite
+                sprite_index--; // decrement the sprite_index
+            }
+        }
     }
 }

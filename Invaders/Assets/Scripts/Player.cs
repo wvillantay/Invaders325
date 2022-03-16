@@ -21,7 +21,6 @@ public class Player : MonoBehaviour
     public GameObject life_1;
     public GameObject life_2;
     public GameObject life_3;
-    //public GameObject life_4;
     public TMP_Text life_count;
 
     // when the script starts up
@@ -159,11 +158,13 @@ public class Player : MonoBehaviour
             {
                 // updating the life count text
                 life_count.text = $"{lives}";
-                SceneManager.LoadScene("Menu");
+                SceneManager.LoadScene("Credits");
             }
 
             // play the explosion sound
             Sound.Instance.PlaySound("Explosion");
+
+           PlayerSpriteSwap.Instance.Trigger(); // trigger the player explosion animation
         }
     }
 
